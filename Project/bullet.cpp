@@ -10,11 +10,9 @@ Bullet::Bullet() {
 
 }
 
-Bullet::Bullet(Graphics &graphics, const std::string filePath, int sourceX, int sourceY, int width, int height, float delay):
+Bullet::Bullet(Graphics &graphics, const std::string filePath, int sourceX, int sourceY, int width, int height):
 	dx(0),
 	dy(0),
-	timeElasped(0),
-	delay(delay),
 	isAlive(false)
 {
 	this->sourceRect = { sourceX,sourceY,width,height };
@@ -35,10 +33,6 @@ void Bullet::update(float elaspedTime) {
 	if (isAlive) {
 		this->x += dx * elaspedTime;
 		this->y += dy * elaspedTime;
-		this->timeElasped += elaspedTime;
-		if (this->timeElasped > this->delay) {
-			this->timeElasped -= this->delay;
-		}
 	}
 }
 
@@ -66,25 +60,7 @@ void Bullet::shootBullet(Player &player) {
 		this->dx = 0;
 		isAlive = true;
 		break;
-	default:
-		break;
 	}
-}
-
-bool Bullet::checkCollision1() {
-	if (this->y < 0) {
-		return true;
-	}
-	if (this->y + 16 > global::screenHeight) {
-		return true;
-	}
-	if (this->x < 0) {
-		return true;
-	}
-	if (this->x + 16 > global::screenWidth) {
-		return true;
-	}
-	return false;
 }
 
 float Bullet::getBulletX() {

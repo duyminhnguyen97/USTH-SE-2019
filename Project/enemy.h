@@ -15,7 +15,6 @@ public:
 	void draw(Graphics &graphics);
 	void update(float elaspedTime);
 	void monsterMove(Player &player);
-	void checkCollision();
 	void handleCollision();
 	void isHit();
 

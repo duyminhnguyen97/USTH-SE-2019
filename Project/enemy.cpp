@@ -51,21 +51,6 @@ void Enemy::monsterMove(Player &player) {
 	}
 }
 
-void Enemy::checkCollision() {
-	if (this->y < 0) {
-		this->y = 0;
-	}
-	if (this->y + 38 > global::screenHeight) {
-		this->y = global::screenHeight - 38;
-	}
-	if (this->x < 0) {
-		this->x = 0;
-	}
-	if (this->x + 25 > global::screenWidth) {
-		this->x = global::screenWidth - 25;
-	}
-}
-
 void Enemy::draw(Graphics &graphics) {
 	if (isAlive) {
 		Anime::draw(graphics, this->x, this->y);

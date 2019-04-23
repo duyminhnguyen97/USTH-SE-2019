@@ -15,7 +15,7 @@ Anime::Anime(Graphics &graphics, const std::string &filePath, int sourceX, int s
 
 }
 
-void Anime::addAnimation(int frames, int sourceX, int sourceY, std::string name, int width, int height) {
+void Anime::addAnimation(int frames, int sourceX, int sourceY, std::string name, int width, int height) {		//this function adds multiples of source rectangles to create an animaton.
 	std::vector<SDL_Rect> animationRect;
 	for (int i = 0; i < frames; i++) {
 		SDL_Rect framesRect = { sourceX + i * width, sourceY, width, height };
@@ -24,7 +24,7 @@ void Anime::addAnimation(int frames, int sourceX, int sourceY, std::string name,
 	this->animationSheets.insert(std::pair <std::string, std::vector<SDL_Rect>> (name, animationRect));
 }
 
-void Anime::playAnimation(std::string animation) {
+void Anime::playAnimation(std::string animation) {			//this function runs the animation.
 	if (this->currAnimation != animation) {
 		this->currAnimation = animation;
 		this->frameIndex = 0;

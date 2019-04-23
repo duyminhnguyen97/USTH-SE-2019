@@ -15,9 +15,8 @@ Player::Player(Graphics &graphics, float x, float y) : //x-y is spawn point on t
 	Anime(graphics, "Debug/images/Char1.png", 0, 0, 25, 38, x, y, 150),
 	dx(0),
 	dy(0),
-	isInvincible(true),
-	maxHealth(10000),
-	currHealth(10000)
+	maxHealth(5000),
+	currHealth(5000)
 {
 	this->setUpAnimation();
 }

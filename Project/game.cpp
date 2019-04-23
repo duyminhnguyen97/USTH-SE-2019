@@ -8,7 +8,7 @@
 
 
 
-namespace {
+namespace {			//this is the frame limits setup
 	const float FPS = 60;
 	const float MAX_FRAME_TIME = 1000 / FPS;
 	const unsigned int BULLET_INTERVAL = 1500;
@@ -20,18 +20,18 @@ Game::Game() {
 	this->gameLoop();
 }
 
-void Game::gameLoop() {
+void Game::gameLoop() {		//this is the function to loop the game.
 	Graphics graphics;
 	SDL_Event e;
 
 	int LAST_UPDATE_TIME = SDL_GetTicks();
 
-	this->sprite = Player(graphics, 450, 450);
+	this->sprite = Player(graphics, 450, 350);
 	this->sprite.playAnimation("IdleDown");
 	this->enemy = Enemy(graphics, 800, 800);
 	this->enemy.playAnimation("MonsterLeft");
 	this->map = Map(graphics, "Debug/images/BG.png");
-	this->bullet = Bullet(graphics, "Debug/images/bullet.png", 0, 0, 16, 16, 150);
+	this->bullet = Bullet(graphics, "Debug/images/bullet.png", 0, 0, 16, 16);
 	this->hud = Hud(graphics);
 
 	while (true) {
@@ -85,7 +85,6 @@ void Game::gameLoop() {
 		}
 		sprite.checkCollision();
 		enemy.monsterMove(sprite);
-		enemy.checkCollision();
 
 		if (enemyCollision()) { // bullet vs monster
 			enemy.isHit();
@@ -109,14 +108,14 @@ void Game::gameLoop() {
 	}
 }
 
-void Game::update(float elaspedTime) {
+void Game::update(float elaspedTime) {		//this function updates the game every frame.
 	this->sprite.update(elaspedTime);
 	this->enemy.update(elaspedTime);
 	this->bullet.update(elaspedTime);
 	this->hud.update(sprite);
 }
 
-void Game::draw(Graphics &graphics) {
+void Game::draw(Graphics &graphics) {		//this function draws everything on the screen.
 	graphics.clear();
 	this->map.draw(graphics);
 	this->sprite.draw(graphics);
@@ -126,7 +125,7 @@ void Game::draw(Graphics &graphics) {
 	graphics.show();
 }
 
-bool Game::isCollision() { //monster vs player
+bool Game::isCollision() {					//this function handles monster vs player collision
 	float leftA, topA, rightA, botA;
 	float leftB, topB, rightB, botB;
 
@@ -155,13 +154,7 @@ bool Game::isCollision() { //monster vs player
 	return true;
 }
 
-void Game::bulletThing(Graphics &graphics) {
-	if (bullet.checkCollision1()) {
-		this->bullet = Bullet(graphics, "Debug/images/bullet.png", 0, 0, 16, 16, 150);
-	}
-}
-
-bool Game::enemyCollision() { //bullet vs monster
+bool Game::enemyCollision() {				//this function handles bullet vs monster collisions.
 	float leftA, topA, rightA, botA;
 	float leftB, topB, rightB, botB;
 

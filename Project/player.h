@@ -30,7 +30,6 @@ public:
 	direction getDirection();
 
 	void handleCollision();
-	bool isInvincible;
 	bool endGame = false;
 	virtual void setUpAnimation();
 protected:

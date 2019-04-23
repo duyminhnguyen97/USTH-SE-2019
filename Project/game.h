@@ -4,7 +4,6 @@
 #include "graphics.h"
 #include "player.h"
 #include "map.h"
-#include "input.h"
 #include "enemy.h"
 #include "bullet.h"
 #include "hud.h"
@@ -18,7 +17,6 @@ public:
 	void update(float elapsedTime);
 	void draw(Graphics &graphics);
 	bool isCollision();
-	void bulletThing(Graphics &graphics);
 	bool enemyCollision();
 protected:
 private:
